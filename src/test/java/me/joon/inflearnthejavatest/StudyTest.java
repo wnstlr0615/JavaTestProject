@@ -3,10 +3,11 @@ package me.joon.inflearnthejavatest;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class) //테스트 이름을 공백을 기준으로 분리 시켜줌
 class StudyTest { // 스프링 부트 2.2 부터는 test에 public를 붙이지 않아도 된다
     @Test
-    void create(){
+    @DisplayName("스터디 만들기")
+    void create_new_study(){
         Study study=new Study();
         assertNotNull(study);
     }

@@ -10,6 +10,7 @@ class StudyTest { // 스프링 부트 2.2 부터는 test에 public를 붙이지 
     void create_new_study(){
         Study study=new Study();
         assertNotNull(study);
+        assertEquals(StudyStatus.DRAFT, study.getStudyStatus());
     }
     @Test
     void create1(){

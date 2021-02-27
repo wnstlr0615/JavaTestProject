@@ -2,6 +2,8 @@ package me.joon.inflearnthejavatest;
 
 import org.junit.jupiter.api.*;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class) //테스트 이름을 공백을 기준으로 분리 시켜줌
 class StudyTest { // 스프링 부트 2.2 부터는 test에 public를 붙이지 않아도 된다
@@ -9,8 +11,21 @@ class StudyTest { // 스프링 부트 2.2 부터는 test에 public를 붙이지 
     @DisplayName("스터디 만들기")
     void create_new_study(){
         Study study=new Study();
-        assertNotNull(study);
-        assertEquals(StudyStatus.DRAFT, study.getStudyStatus());
+        study.setLimit(15);
+        assertAll(
+                ()->assertNotNull(study),
+                ()->assertEquals(StudyStatus.DRAFT, study.getStudyStatus(), ()->"스터디의 default 값은 DRAFT 여야 한다."), // 람다로 표현 해야할 경우 필요한 경우에만 실행
+        //           기댓값   결과 값   message
+                ()->assertTrue(study.getLimit()>0,"")
+    );
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> study.setLimit(-10));
+        assertEquals(illegalArgumentException.getMessage(),"limit는 0 이상이어야 한다");
+        assertTimeout(Duration.ofMillis(100), ()-> {
+            new Study();
+            //Thread.sleep(500);
+    });
+
+
     }
     @Test
     void create1(){

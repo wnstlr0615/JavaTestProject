@@ -16,4 +16,12 @@
 ●	어떤 테스트인지 테스트 이름을 보다 쉽게 표현할 수 있는 방법을 제공하는 애노테이션.
 ●	@DisplayNameGeneration 보다 우선 순위가 높다.
 ====================================================
+4.	JUnit 5: Assertion
+
+실제 값이 기대한 값과 같은지 확인	    assertEquals(expected, actual)
+값이 null이 아닌지 확인	            assertNotNull(actual)
+다음 조건이 참(true)인지 확인	        assertTrue(boolean)
+모든 확인 구문 확인	                assertAll(executables...)
+예외 발생 확인	                    assertThrows(expectedType, executable)
+특정 시간 안에 실행이 완료되는지 확인	assertTimeout(duration, executable)
 

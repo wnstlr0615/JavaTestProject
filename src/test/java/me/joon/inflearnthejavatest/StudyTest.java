@@ -7,8 +7,9 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.*;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class) //테스트 이름을 공백을 기준으로 분리 시켜줌
 class StudyTest { // 스프링 부트 2.2 부터는 test에 public를 붙이지 않아도 된다
-    @Test
     @DisplayName("스터디 만들기")
+   // @Tag("fast")
+    @FastTest
     void create_new_study(){
         Study study=new Study();
         study.setLimit(15);
@@ -28,6 +29,7 @@ class StudyTest { // 스프링 부트 2.2 부터는 test에 public를 붙이지 
 
     }
     @Test
+    @Tag("fast")
     void create1(){
         System.out.println("create1");
     }
